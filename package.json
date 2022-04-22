@@ -1,0 +1,29 @@
+{
+  "name": "trello-nirakz-api",
+  "version": "1.0.0",
+  "description": "APIs for trello clone app",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nirakz/trello-nirakz-api.git"
+  },
+  "keywords": [],
+  "author": "Nirakz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nirakz/trello-nirakz-api/issues"
+  },
+  "homepage": "https://github.com/Nirakz/trello-nirakz-api#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint": "^8.13.0"
+  }
+}
