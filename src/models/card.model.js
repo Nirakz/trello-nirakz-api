@@ -52,5 +52,21 @@ const deteleMany = async (ids) => {
   }
 }
 
+const update = async (id, data) => {
+  try {
+    const updateData = { ...data }
+    if (data.boardId ) updateData.boardId = ObjectID(data.boardId)
+    if (data.columnId ) updateData.columnId = ObjectID(data.columnId)
 
-export const CardModel = { cardCollectionName, createNew, deteleMany }
+    const result = await getDB().collection(cardCollectionName).findOneAndUpdate(
+      { _id: ObjectID(id) },
+      { $set: updateData },
+      { returnOriginal: false }
+    )
+    return result.value
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export const CardModel = { cardCollectionName, createNew, deteleMany, update }
