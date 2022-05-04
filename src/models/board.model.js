@@ -7,7 +7,7 @@ import { CardModel } from './card.model'
 
 const boardCollectionName = 'boards'
 const boardCollectionSchema = Joi.object({
-  title: Joi.string().required().min(3).max(20).trim(),
+  title: Joi.string().required().min(3).max(30).trim(),
   columnOrder: Joi.array().items(Joi.string()).default([]),
   createdAt: Joi.date().timestamp().default(Date.now()),
   updatedAt: Joi.date().timestamp().default(Date.now()),
@@ -60,4 +60,18 @@ const getFullBoard = async (boardId) => {
   }
 }
 
-export const BoardModel = { createNew, pushColumnOrder, getFullBoard }
+const update = async (id, data) => {
+  try {
+    const updateData = { ...data }
+    const result = await getDB().collection(boardCollectionName).findOneAndUpdate(
+      { _id: ObjectID(id) },
+      { $set: updateData },
+      { returnOriginal: false }
+    )
+    return result.value
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export const BoardModel = { createNew, pushColumnOrder, getFullBoard, update }
